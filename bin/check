@@ -41,7 +41,7 @@ def paragraphs(text):
     """
     out, cur = [], []
     for line in text.splitlines():
-        if line.startswith("#"):
+        if re.match(r"^#{1,6} ", line):
             if cur:
                 out.append(" ".join(cur))
                 cur = []
@@ -101,15 +101,22 @@ def check_templates(failures):
 
 def read_order_paths(readme):
     """First-column paths of the table under "## Read this in order"."""
-    paths, inside = set(), False
+    paths, inside, in_table = set(), False, False
     for line in readme.splitlines():
-        if line.startswith("## "):
+        if re.match(r"^#{1,6} ", line):
             inside = line.strip() == "## Read this in order"
             continue
-        if inside:
+        if not inside:
+            continue
+        if line.startswith("|"):
+            in_table = True
             m = re.match(r"^\|\s*`([^`]+)`\s*\|", line)
             if m:
                 paths.add(m.group(1).strip())
+        elif in_table and line.strip():
+            break
+        elif in_table:
+            break
     return paths
 
 

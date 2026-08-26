@@ -36,8 +36,8 @@ With no boardkit checkout and no skills installed:
 2. Read, in this order: `PLAYBOOK.md` for the map from the skill's
    sections to the files here; the templates you will copy; the matching
    worked example under `examples/`; `EXTRACTION.md` only if you need to
-   know where a rule came from. [README.md](README.md) describes every
-   file in one table.
+   know where a rule came from. The table in [README.md](README.md)
+   catalogs the templates and examples.
 3. Copy the templates you need into your repo.
 4. Give executors that load no skills the quote blocks from
    [`templates/dispatch-brief.md`](templates/dispatch-brief.md).
@@ -52,9 +52,7 @@ With a boardkit checkout beside this one:
    `${BOARDKIT_HOME:-../boardkit}/FEEDBACK.md`, as
    [`FEEDBACK.md`](FEEDBACK.md) here says.
 3. Follow the commit standards section of that checkout's
-   `docs/board/PROCESS.md` rather than any harness default; the one rule
-   worth knowing before you read it is that agent harnesses add
-   attribution trailers on their own and must be told not to.
+   `docs/board/PROCESS.md`; it overrides any harness default.
 
 ## What is discoverable from where
 

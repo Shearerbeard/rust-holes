@@ -12,17 +12,18 @@ a skill being installed.
 
 Two briefs exist because the two layers are separate units of work: the
 skeleton brief and the fill brief. Send the one that matches the unit.
-Each block names the model class it is written for; the reviewer of
-either unit may be any class but never the model that authored the
-unit.
+Each block names the model class it is written for, in the three-class
+vocabulary a board's model-classes document uses (frontier orchestrator,
+smart writer-reviewer, small explorer). The reviewer of either unit is
+the smart writer-reviewer class, with the frontier class as fallback,
+and is never the model that authored the unit.
 
 ---
 
 ## Skeleton brief block
 
 > **Type discipline (binding for this task).**
-> **Executor class:** strongest available class; this is the design
-> step.
+> **Executor class:** smart writer-reviewer; this is the design step.
 >
 > 1. Lay the full type surface: real signatures, real derives, real
 >    `From`/`Into` impls, real leaf types. Do not stand in a placeholder
@@ -76,8 +77,7 @@ unit.
 ## Fill brief block
 
 > **Fill discipline (binding for this task).**
-> **Executor class:** smaller class, executing against green-when-done
-> criteria.
+> **Executor class:** small explorer.
 >
 > 1. Fill only the bodies named in this brief: <list>. Do not change any
 >    signature, derive, or type. A signature change means the skeleton was

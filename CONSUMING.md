@@ -1,8 +1,9 @@
 # Consuming the rust-holes repo
 
 Start here if you consume this repo rather than maintain it. The
-practice itself is the public `typed-holes` skill; this repo holds the
-templates and worked examples behind it.
+practice itself is the public `typed-holes` skill, which ships from the
+`Shearerbeard/claude-skills` marketplace; this repo holds the templates
+and worked examples behind it.
 
 ## Access
 
@@ -13,8 +14,9 @@ branch `master`, granted per collaborator. Once granted:
 git clone git@github.com:Shearerbeard/rust-holes.git
 ```
 
-It is never published, and nothing derived from it goes into a public
-repo; `EXTRACTION.md` states that boundary and what it covers.
+It is never published. What may and may not leave this repo is
+`EXTRACTION.md`'s to state; read its Standing obligations before you
+carry anything out of here.
 
 ## Prerequisites
 
@@ -31,8 +33,11 @@ repo; `EXTRACTION.md` states that boundary and what it covers.
 With no boardkit checkout and no skills installed:
 
 1. Clone, then run `bin/check`; it exits 0 on a healthy checkout.
-2. Read the files in the order the table in [README.md](README.md)
-   gives.
+2. Read, in this order: `PLAYBOOK.md` for the map from the skill's
+   sections to the files here; the templates you will copy; the matching
+   worked example under `examples/`; `EXTRACTION.md` only if you need to
+   know where a rule came from. [README.md](README.md) describes every
+   file in one table.
 3. Copy the templates you need into your repo.
 4. Give executors that load no skills the quote blocks from
    [`templates/dispatch-brief.md`](templates/dispatch-brief.md).
@@ -46,9 +51,10 @@ With a boardkit checkout beside this one:
 2. Route practice-relevant friction to
    `${BOARDKIT_HOME:-../boardkit}/FEEDBACK.md`, as
    [`FEEDBACK.md`](FEEDBACK.md) here says.
-3. Follow the family commit standard: a conventional lowercase subject,
-   and no sign-off or AI-attribution trailers. Agent harnesses add those
-   by default and have to be told not to.
+3. Follow the commit standards section of that checkout's
+   `docs/board/PROCESS.md` rather than any harness default; the one rule
+   worth knowing before you read it is that agent harnesses add
+   attribution trailers on their own and must be told not to.
 
 ## What is discoverable from where
 

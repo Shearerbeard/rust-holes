@@ -23,6 +23,7 @@ numbered per-finding dispositions.
 
 | File | What it is |
 |---|---|
+| `CONSUMING.md` | Start here if you are consuming this repo: access, prerequisites, the standalone and family paths. |
 | `PLAYBOOK.md` | The map from the `typed-holes` skill's sections to the templates and examples here; the practice itself lives in the skill. |
 | `templates/DESIGN.md` | The per-module type inventory, seam table, panel ledger, residual risks. |
 | `templates/skeleton-conventions.md` | The per-module statement of how the skeleton rules were applied. |

@@ -23,7 +23,7 @@ numbered per-finding dispositions.
 
 | File | What it is |
 |---|---|
-| `PLAYBOOK.md` | The practice. Every rule is stated here, once. |
+| `PLAYBOOK.md` | The map from the `typed-holes` skill's sections to the templates and examples here; the practice itself lives in the skill. |
 | `templates/DESIGN.md` | The per-module type inventory, seam table, panel ledger, residual risks. |
 | `templates/skeleton-conventions.md` | The per-module statement of how the skeleton rules were applied. |
 | `templates/dispatch-brief.md` | Quote blocks for executors that do not load skills. |
@@ -35,7 +35,7 @@ numbered per-finding dispositions.
 | `EXTRACTION.md` | Where every rule came from. |
 
 Rules are stated once and cross-referenced. If a rule appears to be
-missing from a template, it is in `PLAYBOOK.md`.
+missing, it is in the `typed-holes` skill.
 
 ## Using it
 
@@ -59,9 +59,8 @@ references.
   process template's type-discipline section is a stub that names the
   `typed-holes` skill if installed and degrades to "define your language's
   type discipline here" if not.
-- **rust-holes** (this repo, private) is the full playbook, the templates,
-  and the private-derived exemplars. Usable in any Rust repo with no board
-  and no skills installed.
+- **rust-holes** (this repo, private) holds the templates and worked
+  examples; the practice itself lives in the `typed-holes` skill.
 - **claude-skills** (public) is the glue. The `typed-holes` skill carries
   the generic practice and is self-sufficient for the workflow; this repo
   adds the templates and worked examples.

@@ -55,8 +55,8 @@ and is never the model that authored the unit.
 > 9. The skeleton is its own commit and must be green under
 >    `cargo check --workspace --all-targets`,
 >    `cargo clippy --workspace --all-targets -- -D warnings`, and
->    `cargo +nightly fmt --check` (plain `cargo fmt --check` where the
->    executor has no nightly toolchain). Do not implement any body in
+>    `cargo fmt --check` (the `+nightly` form only where the repo pins
+>    nightly rustfmt options). Do not implement any body in
 >    this unit.
 >
 > **API conventions (drift accumulates across executors; these are
@@ -94,7 +94,8 @@ and is never the model that authored the unit.
 >    is a finding to report, not a file to update.
 > 5. Green means: `cargo clippy --workspace --all-targets -- -D warnings
 >    -A clippy::todo` (drop the `-A` on the last fill unit),
->    `cargo +nightly fmt --check`, and the named tests passing.
+>    `cargo fmt --check` (the `+nightly` form only where the repo pins
+>    nightly rustfmt options), and the named tests passing.
 >
 > **API conventions.** Same four rules as the skeleton brief (`AsRef` over
 > inherent `as_str`, no function-local consts, no `as_str().to_owned()`

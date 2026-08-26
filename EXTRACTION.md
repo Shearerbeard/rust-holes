@@ -33,7 +33,7 @@ the section names are the durable reference.
 | Public fields only where every field is validated; cross-field invariants stay private | `TYPE_PLAN.md` "Skeleton conventions" | port | |
 | Pass-through `Display` impls are skeleton surface; format-bearing `Display` impls are behavior and must name what pins the format | `TYPE_PLAN.md` "Skeleton conventions" | port | Lives in `templates/skeleton-conventions.md` as a per-module table rather than in `PLAYBOOK.md`; aura's own split (four trivial, four format-bearing, each with its pinning source) is the model. |
 | Skeleton passes `cargo check` + `cargo clippy` before any body, as its own commit | `PROCESS.md` "Type discipline" | port | Aura's reason carried verbatim in substance: the panel's input becomes a retrievable git object. |
-| `cargo +nightly fmt --check` in the skeleton gate | aura board gate practice (card Gate S lines, S2 and S70) | author | Aura's Gate S runs fmt; promoting it into the skeleton gate is this repo's statement. |
+| `cargo +nightly fmt --check` in the skeleton gate | aura board gate practice (card Gate S lines, S2 and S70) | author | Aura's Gate S runs fmt; promoting it into the skeleton gate is this repo's statement. Reconciled toward the skill's wording (plain `cargo fmt --check`, `+nightly` only where the repo pins nightly options) in `templates/dispatch-brief.md`; `templates/skeleton-conventions.md` and `templates/golden-frame-harness.md` still state the nightly-first form and are follow-up work outside the S4 scope. |
 | `#[expect(unused_variables, reason = ...)]` on every `todo!()` fn that takes a parameter; `expect` over `allow` | `TYPE_PLAN.md` "Skeleton conventions" | port, corrected | The preference is aura's. Aura's self-removal rationale overstated `expect`: a zero-parameter hole trips `unfulfilled_lint_expectation` and a body that still ignores an argument keeps its marker, so this repo states both limits and keeps a marker sweep in the fill checklist. |
 | Hole inventory: `clippy::todo` at warn during fill and deny at completion, or a baselined `grep -rn 'todo!(' src/` | none | author | Net-new. `todo!()` is a diverging panic and `clippy::todo` is allow-by-default, so nothing tracked the holes without this rule. |
 | Module-level `#![allow(dead_code)]` on entry, removed per slice | wiki `typed-holes` workstream P1 | port | Closes the 06-17 retro open question the workstream tracks. |
@@ -126,10 +126,14 @@ the section names are the durable reference.
 - **Never publish.** This repo carries distilled private material. The
   public slice is the `typed-holes` skill in claude-skills, which must be
   self-sufficient without this repo.
+- **Doctrine drift is checked against the skill.** The canonical statement
+  of the practice is the `typed-holes` skill, not `PLAYBOOK.md` prose; the
+  tripwire below compares the sources to the skill, and `PLAYBOOK.md` is
+  only the map to this repo's templates.
 - **Re-grep tripwire.** When the aura sources change, re-check that every
-  rule in `PLAYBOOK.md` still has a row here and that no new rule in
+  rule in the skill still has a row here and that no new rule in
   `PROCESS.md` "Type discipline", `TYPE_PLAN.md` "Skeleton conventions",
-  or the retro's "Rust development scheme" section is missing.
+  or the retro's "Rust development scheme" section is missing from the skill.
 - **Correctives, not silent absorption.** A failure of the practice in
   future work is recorded against the "Known limits" section here and in
   the wiki workstream, never quietly patched into the playbook prose.

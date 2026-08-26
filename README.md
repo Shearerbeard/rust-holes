@@ -43,6 +43,12 @@ The playbook is repo-neutral. It assumes a Cargo workspace and nothing
 else, with no board and no particular harness required. Copy the templates you
 need into the target repo, or read the playbook and follow it.
 
+Every template opens with a paragraph that begins `Template.`, says how
+to instantiate it, and carries the copy-stamp instruction; a copy
+records `copied from rust-holes@<sha>` so it can be diffed against
+upstream later. `bin/check` verifies those headers, this file's
+read-order table, every relative link, and the private notice above.
+
 ## How this composes
 
 Three artifacts, each standalone, composed only through optional

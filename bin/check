@@ -1,229 +1,129 @@
 #!/usr/bin/env python3
-import os
+"""rust-holes self-check. Run from the repo root: bin/check
+
+Exit 0 when every rule passes. Otherwise print one line per defect as
+`FAIL <rule>: <file>: <detail>` and exit 1. The rules are the ones
+README.md ("Using it") promises: links, template-header,
+template-stamp, readme-read-order, never-publish.
+"""
+
 import re
 import sys
 from pathlib import Path
 
-def main():
-    repo_root = Path.cwd()
-    defects = []
-    checked_files = 0
-    
-    # 1. links rule
-    links_defects = check_links(repo_root)
-    defects.extend(links_defects)
-    
-    # 2. template-header rule
-    template_header_defects = check_template_header(repo_root)
-    defects.extend(template_header_defects)
-    
-    # 3. template-stamp rule
-    template_stamp_defects = check_template_stamp(repo_root)
-    defects.extend(template_stamp_defects)
-    
-    # 4. readme-read-order rule
-    readme_read_order_defects = check_readme_read_order(repo_root)
-    defects.extend(readme_read_order_defects)
-    
-    # 5. never-publish rule
-    never_publish_defects = check_never_publish(repo_root)
-    defects.extend(never_publish_defects)
-    
-    # Count checked files
-    for md_file in find_md_files(repo_root):
-        checked_files += 1
-    
-    if defects:
-        for defect in defects:
-            print(defect)
-        sys.exit(1)
-    else:
-        print(f"OK: {checked_files} files checked")
-        sys.exit(0)
+ROOT = Path(__file__).resolve().parent.parent
+LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+TICK_RE = re.compile(r"`((?:\.\./|templates/|examples/)[A-Za-z0-9_./-]+\.md)`")
+STAMP = (
+    "When you copy this file, record `copied from rust-holes@<sha>` in "
+    "the copy, where `<sha>` is this repo's HEAD at copy time."
+)
+PRIVATE_OPENING = "**Private.**"
 
-def find_md_files(root):
-    """Find all .md files in root, templates/, examples/, docs/"""
-    md_files = []
-    
-    # Root directory
-    for path in root.glob("*.md"):
-        md_files.append(path)
-    
-    # templates/ directory
-    templates_dir = root / "templates"
-    if templates_dir.exists():
-        for path in templates_dir.glob("**/*.md"):
-            md_files.append(path)
-    
-    # examples/ directory
-    examples_dir = root / "examples"
-    if examples_dir.exists():
-        for path in examples_dir.glob("**/*.md"):
-            md_files.append(path)
-    
-    # docs/ directory
-    docs_dir = root / "docs"
-    if docs_dir.exists():
-        for path in docs_dir.glob("**/*.md"):
-            md_files.append(path)
-    
-    return md_files
 
-def check_links(root):
-    """Check markdown links in .md files"""
-    defects = []
-    
-    for md_file in find_md_files(root):
-        try:
-            content = md_file.read_text(encoding='utf-8')
-            
-            # Find markdown links of the form (relative/path.md)
-            link_pattern = r'\]\(([^)]+\.md)\)'
-            for match in re.finditer(link_pattern, content):
-                target = match.group(1)
-                
-                # Skip http links, anchor links, or links starting with <
-                if target.startswith(('http', '#', '<')):
-                    continue
-                
-                # Check if target is relative path
-                if '/' in target:
-                    # Resolve relative to the referencing file
-                    target_path = md_file.parent / target
-                    if not target_path.exists():
-                        defects.append(f"FAIL links: {md_file.relative_to(root)}: link target {target} does not exist")
-                
-            # Find backticked relative paths
-            backtick_pattern = r'`([^`]+\.md)`'
-            for match in re.finditer(backtick_pattern, content):
-                target = match.group(1)
-                
-                # Check for ../<name>.md patterns
-                if target.startswith('../') and target.endswith('.md'):
-                    # Resolve relative to the referencing file
-                    target_path = md_file.parent / target
-                    if not target_path.exists():
-                        defects.append(f"FAIL links: {md_file.relative_to(root)}: backticked path {target} does not exist")
-                
-                # Check for templates/<name>.md or examples/<name>.md
-                elif (target.startswith('templates/') or target.startswith('examples/')) and target.endswith('.md'):
-                    # Resolve relative to repo root
-                    target_path = root / target
-                    if not target_path.exists():
-                        defects.append(f"FAIL links: {md_file.relative_to(root)}: backticked path {target} does not exist")
-                        
-        except Exception as e:
-            defects.append(f"FAIL links: {md_file.relative_to(root)}: error reading file")
-    
-    return defects
+def md_files():
+    files = []
+    for d in (ROOT, ROOT / "templates", ROOT / "examples", ROOT / "docs"):
+        if d.is_dir():
+            files.extend(p for p in d.rglob("*.md") if "scratch" not in p.parts)
+    return sorted(set(files))
 
-def check_template_header(root):
-    """Check every template opens with a Template. paragraph"""
-    defects = []
-    templates_dir = root / "templates"
-    
-    if not templates_dir.exists():
-        return defects
-    
-    for template_file in templates_dir.glob("**/*.md"):
-        try:
-            content = template_file.read_text(encoding='utf-8')
-            lines = content.splitlines()
-            
-            # The opening paragraph (first 12 lines, joined so a wrapped
-            # sentence still matches) must begin the file's instructions
-            # with the word "Template.".
-            header = " ".join(opening_section(lines))
-            if 'Template.' not in header:
-                defects.append(f"FAIL template-header: {template_file.relative_to(root)}: no 'Template.' paragraph in the opening section (before the first '## ' heading)")
-                
-        except Exception as e:
-            defects.append(f"FAIL template-header: {template_file.relative_to(root)}: error reading file")
-    
-    return defects
 
-def check_template_stamp(root):
-    """Check every template's opening section carries the copy stamp instruction"""
-    defects = []
-    templates_dir = root / "templates"
-    if not templates_dir.exists():
-        return defects
-    for template_file in sorted(templates_dir.glob("**/*.md")):
-        lines = template_file.read_text(encoding='utf-8').splitlines()
-        if 'copied from rust-holes@' not in " ".join(opening_section(lines)):
-            defects.append(f"FAIL template-stamp: {template_file.relative_to(root)}: stamp instruction 'copied from rust-holes@' missing from the opening section (before the first '## ' heading)")
-    return defects
+def rel(path):
+    return str(path.relative_to(ROOT))
 
-def opening_section(lines):
-    """Lines before the first '## ' heading: the template's instructions."""
-    out = []
-    for line in lines:
-        if line.startswith("## "):
-            break
-        out.append(line)
+
+def paragraphs(text):
+    """Paragraphs as whitespace-normalized strings, in order."""
+    out, cur = [], []
+    for line in text.splitlines():
+        if line.strip():
+            cur.append(line.strip())
+        elif cur:
+            out.append(" ".join(cur))
+            cur = []
+    if cur:
+        out.append(" ".join(cur))
     return out
 
-def check_readme_read_order(root):
-    """Check template and example files are referenced in README.md"""
-    defects = []
-    readme_path = root / "README.md"
-    
-    if not readme_path.exists():
-        defects.append("FAIL readme-read-order: README.md does not exist")
-        return defects
-    
-    try:
-        readme_content = readme_path.read_text(encoding='utf-8')
-        
-        # Get list of template files
-        templates_dir = root / "templates"
-        if templates_dir.exists():
-            for template_file in templates_dir.glob("**/*.md"):
-                name = template_file.stem
-                pattern = f"templates/{name}"
-                if pattern not in readme_content:
-                    defects.append(f"FAIL readme-read-order: {template_file.relative_to(root)} not found in README.md")
-        
-        # Get list of example files
-        examples_dir = root / "examples"
-        if examples_dir.exists():
-            for example_file in examples_dir.glob("**/*.md"):
-                name = example_file.stem
-                pattern = f"examples/{name}"
-                if pattern not in readme_content:
-                    defects.append(f"FAIL readme-read-order: {example_file.relative_to(root)} not found in README.md")
-                    
-    except Exception as e:
-        defects.append(f"FAIL readme-read-order: error reading README.md")
-    
-    return defects
 
-def check_never_publish(root):
-    """Check README.md has line starting with '**Private.**'"""
-    defects = []
-    readme_path = root / "README.md"
-    
-    if not readme_path.exists():
-        defects.append("FAIL never-publish: README.md does not exist")
-        return defects
-    
-    try:
-        content = readme_path.read_text(encoding='utf-8')
-        lines = content.splitlines()
-        
-        has_private = False
-        for line in lines:
-            if line.startswith('**Private.**'):
-                has_private = True
-                break
-        
-        if not has_private:
-            defects.append("FAIL never-publish: README.md missing line starting with '**Private.**'")
-            
-    except Exception as e:
-        defects.append("FAIL never-publish: error reading README.md")
-    
-    return defects
+def opening_paragraph(text):
+    """The first paragraph after the `# title` line, or '' if none."""
+    paras = paragraphs(text)
+    if not paras or not paras[0].startswith("# "):
+        return ""
+    return paras[1] if len(paras) > 1 else ""
+
+
+def check_links(failures):
+    for f in md_files():
+        text = f.read_text(encoding="utf-8")
+        targets = LINK_RE.findall(text) + TICK_RE.findall(text)
+        for raw in targets:
+            target = raw.strip()
+            if target.startswith("<") and target.endswith(">"):
+                target = target[1:-1]
+            target = target.split("#", 1)[0].split(" ", 1)[0].strip()
+            if not target or target.startswith(("http://", "https://", "mailto:")):
+                continue
+            if not target.endswith(".md"):
+                continue
+            candidates = [f.parent / target]
+            if target.startswith(("templates/", "examples/")):
+                candidates.append(ROOT / target)
+            if not any(c.exists() for c in candidates):
+                failures.append(f"FAIL links: {rel(f)}: {raw} does not resolve")
+
+
+def check_templates(failures):
+    for f in sorted((ROOT / "templates").glob("*.md")):
+        opening = opening_paragraph(f.read_text(encoding="utf-8"))
+        if not opening.startswith("Template."):
+            failures.append(
+                f"FAIL template-header: {rel(f)}: the paragraph after the title must begin with 'Template.'"
+            )
+        if STAMP not in opening:
+            failures.append(
+                f"FAIL template-stamp: {rel(f)}: the opening paragraph must carry the copy-stamp instruction verbatim"
+            )
+
+
+def read_order_paths(readme):
+    """First-column paths of the README read-order table."""
+    paths = set()
+    for line in readme.splitlines():
+        m = re.match(r"^\|\s*`([^`]+)`\s*\|", line)
+        if m:
+            paths.add(m.group(1).strip())
+    return paths
+
+
+def check_readme(failures):
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    listed = read_order_paths(readme)
+    for d in ("templates", "examples"):
+        for f in sorted((ROOT / d).glob("*.md")):
+            if f"{d}/{f.name}" not in listed:
+                failures.append(
+                    f"FAIL readme-read-order: README.md: {d}/{f.name} is not a row of the read-order table"
+                )
+    if not opening_paragraph(readme).startswith(PRIVATE_OPENING):
+        failures.append(
+            "FAIL never-publish: README.md: the paragraph after the title must begin with '**Private.**'"
+        )
+
+
+def main():
+    failures = []
+    check_links(failures)
+    check_templates(failures)
+    check_readme(failures)
+    if failures:
+        print("\n".join(failures))
+        return 1
+    print(f"OK: {len(md_files())} files checked")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

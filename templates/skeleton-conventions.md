@@ -1,9 +1,11 @@
 # Skeleton conventions
 
-The per-module conventions section. Copy into the module's `DESIGN.md` or
-keep beside it, fill the angle brackets, delete this line. The rules
-behind these conventions are in `../PLAYBOOK.md`; this file is the
-per-module statement of how they were applied.
+Template. The per-module conventions section. Copy into the module's
+`DESIGN.md` or keep beside it, fill the angle brackets, delete this
+line. The rules behind these conventions are in `../PLAYBOOK.md`; this
+file is the per-module statement of how they were applied. When you copy
+this file, record `copied from rust-holes@<sha>` in the copy, where
+`<sha>` is this repo's HEAD at copy time.
 
 ## What is held open
 

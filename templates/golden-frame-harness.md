@@ -1,13 +1,16 @@
 # Golden-frame harness template
 
 Template. The module shape and starting skeletons for a Layer 2 harness,
-distilled from the worked example at `../examples/golden-frame-harness.md`;
-the rules are `../PLAYBOOK.md`, section "Layer 2". Copy the files and
-replace every `<placeholder>`. The fill order is the PLAYBOOK's: the
-harness's own type skeleton (`scenario.rs` is a Layer 1 skeleton) lands
-as its own commit and passes the full skeleton gate (`cargo check`,
-`cargo clippy -- -D warnings`, fmt), the design panel runs, and only then
-are the goldens written, pre-failing from the spec.
+distilled from the worked example at
+`../examples/golden-frame-harness.md`; the rules are `../PLAYBOOK.md`,
+section "Layer 2". Copy the files and replace every `<placeholder>`. The
+fill order is the PLAYBOOK's: the harness's own type skeleton
+(`scenario.rs` is a Layer 1 skeleton) lands as its own commit and passes
+the full skeleton gate (`cargo check`, `cargo clippy -- -D warnings`,
+fmt), the design panel runs, and only then are the goldens written,
+pre-failing from the spec. When you copy this file, record `copied from
+rust-holes@<sha>` in the copy, where `<sha>` is this repo's HEAD at copy
+time.
 
 ## Module shape
 

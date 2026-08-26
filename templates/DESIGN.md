@@ -1,7 +1,9 @@
 # <module> type design record
 
-Template. Copy next to the module it describes, fill every section, delete
-this line. Rules for the content: `../PLAYBOOK.md`.
+Template. Copy next to the module it describes, fill every section,
+delete this line. Rules for the content: `../PLAYBOOK.md`. When you copy
+this file, record `copied from rust-holes@<sha>` in the copy, where
+`<sha>` is this repo's HEAD at copy time.
 
 Baseline: <commit or tag the skeleton was cut from>. Scope: <what this
 record covers and what it does not>. Coverage ledger: <path to the golden

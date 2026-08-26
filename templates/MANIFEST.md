@@ -3,7 +3,9 @@
 Template. Copy next to the golden-frame harness it describes, fill every
 section, delete this line. Rules for the content: `../PLAYBOOK.md`,
 section "The coverage manifest"; worked shape:
-`../examples/golden-frame-harness.md`.
+`../examples/golden-frame-harness.md`. When you copy this file, record
+`copied from rust-holes@<sha>` in the copy, where `<sha>` is this repo's
+HEAD at copy time.
 
 Baseline: <commit the corpus was cut from>. Design record:
 <path to the module's DESIGN.md>.

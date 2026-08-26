@@ -1,9 +1,12 @@
 # Design panel prompts
 
-Two reviewers, both reading the skeleton commit, both in a fresh context
-with no memory of the design conversation. Neither may share a model
-family with the skeleton's author. Findings come back numbered; each
-disposition is recorded individually in the module's `DESIGN.md`.
+Template. Two reviewers, both reading the skeleton commit, both in a
+fresh context with no memory of the design conversation. Neither may
+share a model family with the skeleton's author. Findings come back
+numbered; each disposition is recorded individually in the module's
+`DESIGN.md`. When you copy this file, record `copied from
+rust-holes@<sha>` in the copy, where `<sha>` is this repo's HEAD at copy
+time.
 
 Fill the angle brackets. Point each reviewer at file paths, not pasted
 contents, when the reviewer can read the repo itself.

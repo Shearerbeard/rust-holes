@@ -28,6 +28,8 @@ numbered per-finding dispositions.
 | `templates/skeleton-conventions.md` | The per-module statement of how the skeleton rules were applied. |
 | `templates/dispatch-brief.md` | Quote blocks for executors that do not load skills. |
 | `templates/design-panel-prompts.md` | The two panel prompts, adversarial and second-model. |
+| `templates/MANIFEST.md` | The golden coverage manifest: identity-claim scope, covered rows, exclusion rows with reasons. |
+| `templates/golden-frame-harness.md` | The Layer 2 harness shape and starting skeletons. |
 | `examples/approval-client-adt.md` | Layer 1 worked example: a small client's whole type surface. |
 | `examples/golden-frame-harness.md` | Layer 2 worked example: harness layout, normalization, byte-identity mode. |
 | `EXTRACTION.md` | Where every rule came from. |

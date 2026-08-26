@@ -1,8 +1,10 @@
 # Dispatch brief block
 
-For executors that do not load skills, such as a model outside the
-harness or a CLI agent. Those executors receive only their brief,
-so the brief **quotes** the rules instead of naming skills.
+Template. For executors that do not load skills, such as a model outside
+the harness or a CLI agent. Those executors receive only their brief, so
+the brief **quotes** the rules instead of naming skills. When you copy
+this file, record `copied from rust-holes@<sha>` in the copy, where
+`<sha>` is this repo's HEAD at copy time.
 
 Paste the block below into the brief verbatim, fill the angle brackets,
 and delete everything above the rule line. Nothing in the block depends on

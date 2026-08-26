@@ -160,3 +160,47 @@ state. The claude-skills change is never committed by this plan.
 ## Log
 
 - 2026-08-25 Plan written; pre-vets running.
+- 2026-08-25 Pre-vets: codex answered as `gpt-5.6-sol`; the bedrock
+  executor answered a nonce and wrote a file from outside the repo,
+  and returned nothing from inside the rust-holes checkout path
+  (opencode refuses that path with a stale project record), so every
+  executor dispatch runs from a git worktree of rust-holes in the
+  session scratchpad. Stage 0 commits landed: boardkit `fbdc88e`,
+  rust-holes `a2b3f2e`.
+- 2026-08-25 S45 executor attempts 1 and 2 stalled with zero output;
+  cause: the headless build agent has no bash permission, so the
+  first shell step blocks on an unanswered prompt. All later
+  dispatches are write-only and the board owner runs every check.
+  Attempt 3 and a second write-only dispatch landed S45's work.
+- 2026-08-26 S45: Gate A round 1 FAIL (6 findings), round 2 FAIL (4
+  findings, two incomplete fixes and two fix regressions), all
+  repaired by the board owner with one harness seed per finding;
+  round 3 dispatched. S47: round 1 FAIL (3 findings, taxonomy names),
+  repaired; round 2 PASS; done. S4: executor output repaired for
+  scope (two out-of-scope templates reverted) and duplication (the
+  verbatim Known limits copy removed); Gate A PASS, zero findings;
+  done. S46 dispatched. The claude-skills sentence is staged,
+  uncommitted, for the Stage 4 stop.
+- 2026-08-26 S45: round 3 FAIL (2, in-cycle) took the board-owner
+  ruling CONTINUE; round 4 FAIL (1 regression, tab and bare ATX
+  headings) is fixed and seeded in `32d7eac` but, per that ruling,
+  escalates to Mike instead of a fifth round; Gate A stays open on
+  S45 with the recommendation recorded on the card. S46: page landed
+  in `b2f57aa`, bus test 18/24 with no P1 filed as evidence, Gate A
+  round 1 FAIL (4, ownership and circularity) repaired in `264bbe1`,
+  round 2 dispatched. Harness stands at 18 failing seeds plus one
+  must-pass case.
+- 2026-08-26 Close. S46 Gate A PASS at round 3 (`f0d843d`). Intent
+  validation: flash lane PASS with four minor notes; sol lane FAIL on
+  five acceptance-grounded findings, dispositioned in boardkit
+  `docs/board/evidence/2026-08-26-cleanup-close.md`. Consequences
+  applied: S4 reopened to in-review (README still said "read the
+  playbook", four templates still named PLAYBOOK as the rules home);
+  S47's cost-plan boxes ticked in the aura board note (uncommitted in
+  the wiki checkout); the S45 "half-filled" seed equivalence stated on
+  its card. Staged uncommitted in this repo for Mike's stop: the
+  README "Using it" line, the template pointer fixes (a scope
+  extension past S4's five files), and CONSUMING's line on how to
+  read the skill. Closing canary 4/4. Stops presented: S46 Gate U, S45
+  Gate A escalation, S4 reopen with its staged fix, the claude-skills
+  sentence, and the bus-test P2s.

@@ -34,10 +34,19 @@ def rel(path):
 
 
 def paragraphs(text):
-    """Paragraphs as whitespace-normalized strings, in order."""
+    """Blocks as whitespace-normalized strings, in order.
+
+    A heading line is its own block even with no blank line after it,
+    so a title never absorbs the paragraph that follows.
+    """
     out, cur = [], []
     for line in text.splitlines():
-        if line.strip():
+        if line.startswith("#"):
+            if cur:
+                out.append(" ".join(cur))
+                cur = []
+            out.append(line.strip())
+        elif line.strip():
             cur.append(line.strip())
         elif cur:
             out.append(" ".join(cur))
@@ -61,9 +70,11 @@ def check_links(failures):
         targets = LINK_RE.findall(text) + TICK_RE.findall(text)
         for raw in targets:
             target = raw.strip()
-            if target.startswith("<") and target.endswith(">"):
-                target = target[1:-1]
-            target = target.split("#", 1)[0].split(" ", 1)[0].strip()
+            if target.startswith("<"):
+                target = target[1:].split(">", 1)[0]
+            else:
+                target = target.split(" ", 1)[0]
+            target = target.split("#", 1)[0].strip()
             if not target or target.startswith(("http://", "https://", "mailto:")):
                 continue
             if not target.endswith(".md"):
@@ -76,7 +87,7 @@ def check_links(failures):
 
 
 def check_templates(failures):
-    for f in sorted((ROOT / "templates").glob("*.md")):
+    for f in sorted((ROOT / "templates").rglob("*.md")):
         opening = opening_paragraph(f.read_text(encoding="utf-8"))
         if not opening.startswith("Template."):
             failures.append(
@@ -89,12 +100,16 @@ def check_templates(failures):
 
 
 def read_order_paths(readme):
-    """First-column paths of the README read-order table."""
-    paths = set()
+    """First-column paths of the table under "## Read this in order"."""
+    paths, inside = set(), False
     for line in readme.splitlines():
-        m = re.match(r"^\|\s*`([^`]+)`\s*\|", line)
-        if m:
-            paths.add(m.group(1).strip())
+        if line.startswith("## "):
+            inside = line.strip() == "## Read this in order"
+            continue
+        if inside:
+            m = re.match(r"^\|\s*`([^`]+)`\s*\|", line)
+            if m:
+                paths.add(m.group(1).strip())
     return paths
 
 
@@ -102,10 +117,10 @@ def check_readme(failures):
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     listed = read_order_paths(readme)
     for d in ("templates", "examples"):
-        for f in sorted((ROOT / d).glob("*.md")):
-            if f"{d}/{f.name}" not in listed:
+        for f in sorted((ROOT / d).rglob("*.md")):
+            if rel(f) not in listed:
                 failures.append(
-                    f"FAIL readme-read-order: README.md: {d}/{f.name} is not a row of the read-order table"
+                    f"FAIL readme-read-order: README.md: {rel(f)} is not a row of the read-order table"
                 )
     if not opening_paragraph(readme).startswith(PRIVATE_OPENING):
         failures.append(

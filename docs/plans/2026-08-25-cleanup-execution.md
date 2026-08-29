@@ -204,3 +204,14 @@ state. The claude-skills change is never committed by this plan.
   read the skill. Closing canary 4/4. Stops presented: S46 Gate U, S45
   Gate A escalation, S4 reopen with its staged fix, the claude-skills
   sentence, and the bus-test P2s.
+- 2026-08-29 Stop resolutions (Mike): the boundary observation on the
+  doctrine home was accepted as-is and queued to boardkit's
+  FEEDBACK.md for a revisit once the family goes public. The staged
+  fixes landed: S4's pointer fixes as `2d0a22b` (scope extended to
+  the four templates at the stop) plus the re-review repair
+  `bcfce58`; S46's skill-path line as `f650b82`. Both took codex
+  re-reviews to an explicit PASS (S4 in two rounds). The
+  claude-skills sentence committed there as `16116ea`. S45's
+  escalation was accepted. Cards S4, S45, and S46 are done on the
+  board (`01dd8eb`); the residual bus-test P2s went to FEEDBACK.md
+  as proposals.

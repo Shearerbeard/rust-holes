@@ -215,3 +215,11 @@ state. The claude-skills change is never committed by this plan.
   escalation was accepted. Cards S4, S45, and S46 are done on the
   board (`01dd8eb`); the residual bus-test P2s went to FEEDBACK.md
   as proposals.
+- 2026-08-29 Residual bus-test P2s worked at Mike's direction, all
+  three judged relevant: `AGENTS.md` (with a one-line `CLAUDE.md`
+  pointer) gives a cold agent an entry that references rather than
+  restates; the seeded-defect harness is checked in at
+  `bin/seed-defects.sh`, 18 seeds and the ok-case green from the new
+  location; README points at `docs/plans/` and names the harness.
+  The boardkit FEEDBACK.md entry that queued them is drained by this
+  entry.

@@ -36,7 +36,9 @@ numbered per-finding dispositions.
 | `EXTRACTION.md` | Where every rule came from. |
 
 Rules are stated once and cross-referenced. If a rule appears to be
-missing, it is in the `typed-holes` skill.
+missing, it is in the `typed-holes` skill. Decision records - the
+audit and the run logs behind the changes here - live in
+`docs/plans/`.
 
 ## Using it
 
@@ -49,7 +51,8 @@ Every template opens with a paragraph that begins `Template.`, says how
 to instantiate it, and carries the copy-stamp instruction; a copy
 records `copied from rust-holes@<sha>` so it can be diffed against
 upstream later. `bin/check` verifies those headers, this file's
-read-order table, every relative link, and the private notice above.
+read-order table, every relative link, and the private notice above;
+`bin/seed-defects.sh` proves each rule still fires on a seeded defect.
 
 ## How this composes
 

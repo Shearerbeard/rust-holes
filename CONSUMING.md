@@ -33,15 +33,18 @@ carry anything out of here.
 With no boardkit checkout and no skills installed:
 
 1. Clone, then run `bin/check`; it exits 0 on a healthy checkout.
-2. Read, in this order: `PLAYBOOK.md` for the map from the skill's
+2. Read the practice itself: the `typed-holes` skill, at
+   `plugins/rust/skills/typed-holes/SKILL.md` in the public
+   `Shearerbeard/claude-skills` repo; installing it is optional.
+3. Read, in this order: `PLAYBOOK.md` for the map from the skill's
    sections to the files here; the templates you will copy; the matching
    worked example under `examples/`; `EXTRACTION.md` only if you need to
    know where a rule came from. The table in [README.md](README.md)
    catalogs the templates and examples.
-3. Copy the templates you need into your repo.
-4. Give executors that load no skills the quote blocks from
+4. Copy the templates you need into your repo.
+5. Give executors that load no skills the quote blocks from
    [`templates/dispatch-brief.md`](templates/dispatch-brief.md).
-5. Keep friction in your own log, as [`FEEDBACK.md`](FEEDBACK.md) says.
+6. Keep friction in your own log, as [`FEEDBACK.md`](FEEDBACK.md) says.
 
 ## The family path
 

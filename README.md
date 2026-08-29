@@ -41,8 +41,9 @@ missing, it is in the `typed-holes` skill.
 ## Using it
 
 The playbook is repo-neutral. It assumes a Cargo workspace and nothing
-else, with no board and no particular harness required. Copy the templates you
-need into the target repo, or read the playbook and follow it.
+else, with no board and no particular harness required. Copy the
+templates you need into the target repo; the practice they serve is the
+`typed-holes` skill, and `PLAYBOOK.md` maps its sections to them.
 
 Every template opens with a paragraph that begins `Template.`, says how
 to instantiate it, and carries the copy-stamp instruction; a copy

@@ -2,9 +2,9 @@
 
 Template. The module shape and starting skeletons for a Layer 2 harness,
 distilled from the worked example at
-`../examples/golden-frame-harness.md`; the rules are `../PLAYBOOK.md`,
-section "Layer 2". Copy the files and replace every `<placeholder>`. The
-fill order is the PLAYBOOK's: the harness's own type skeleton
+`../examples/golden-frame-harness.md`; the rules are the `typed-holes`
+skill, section "Layer 2", mapped in `../PLAYBOOK.md`. Copy the files and replace every `<placeholder>`. The
+fill order is the skill's: the harness's own type skeleton
 (`scenario.rs` is a Layer 1 skeleton) lands as its own commit and passes
 the full skeleton gate (`cargo check`, `cargo clippy -- -D warnings`,
 fmt), the design panel runs, and only then are the goldens written,
@@ -47,7 +47,7 @@ snapshots its own opinion.
 //! Golden-frame harness for <artifact>. See MANIFEST.md for the
 //! identity-claim scope and DESIGN.md for the type record.
 
-// Skeleton entry: removed in slices as the holes fill, per the PLAYBOOK
+// Skeleton entry: removed in slices as the holes fill, per the skill's
 // marker convention. Needs its own removal step in the fill plan.
 #![allow(dead_code)]
 
@@ -180,13 +180,13 @@ deliberate one-byte change fails exactly the snapshots covering it.
 Record both transcripts in DESIGN.md. A mode proven only by the positive
 control is indistinguishable from one that asserts nothing.
 
-## Checklist, in the PLAYBOOK's fill order
+## Checklist, in the skill's fill order
 
 - [ ] Module shape above in place as its own skeleton commit, green under
       the full skeleton gate (`cargo check --workspace --all-targets`,
       `cargo clippy --workspace --all-targets -- -D warnings`,
       `cargo +nightly fmt --check`), with `todo!()` bodies and
-      `#[expect]` markers per the PLAYBOOK marker convention
+      `#[expect]` markers per the skill's marker convention
 - [ ] DESIGN.md filled for `scenario.rs` types; panel run and
       dispositioned before any body or golden lands
 - [ ] MANIFEST.md filled: identity-claim scope, covered rows, exclusion

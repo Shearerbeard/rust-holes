@@ -1,8 +1,8 @@
 # <module> coverage manifest
 
 Template. Copy next to the golden-frame harness it describes, fill every
-section, delete this line. Rules for the content: `../PLAYBOOK.md`,
-section "The coverage manifest"; worked shape:
+section, delete this line. Rules for the content: the `typed-holes` skill, section "The coverage
+manifest", mapped in `../PLAYBOOK.md`; worked shape:
 `../examples/golden-frame-harness.md`. When you copy this file, record
 `copied from rust-holes@<sha>` in the copy, where `<sha>` is this repo's
 HEAD at copy time.

@@ -1,7 +1,7 @@
 # <module> type design record
 
 Template. Copy next to the module it describes, fill every section,
-delete this line. Rules for the content: `../PLAYBOOK.md`. When you copy
+delete this line. Rules for the content: the `typed-holes` skill, mapped in `../PLAYBOOK.md`. When you copy
 this file, record `copied from rust-holes@<sha>` in the copy, where
 `<sha>` is this repo's HEAD at copy time.
 

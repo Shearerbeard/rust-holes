@@ -3,7 +3,7 @@
 Every rule in this repo traced to its source. Same discipline as
 boardkit's `EXTRACTION.md`: one row per rule, with its disposition.
 
-Source repositories (private, on the author's machine):
+Source repositories (the aura project):
 
 | Source | What it holds |
 |---|---|
@@ -23,7 +23,7 @@ the section names are the durable reference.
 
 | Rule in `PLAYBOOK.md` | Source | Disposition | Notes |
 |---|---|---|---|
-| Full type surface first: real signatures, derives, `From`/`Into`, real leaf types | wiki `typed-holes` workstream, opening definition | port | Verbatim in substance; "ollama holes" informal name dropped as user-private vocabulary. |
+| Full type surface first: real signatures, derives, `From`/`Into`, real leaf types | wiki `typed-holes` workstream, opening definition | port | Verbatim in substance; the "ollama holes" informal name is now attributed in `README.md` (Gissurarson's OllamaHoles plugin). |
 | `todo!()` only at real-behavior bodies | `TYPE_PLAN.md` "Skeleton conventions" (~18-45) | port | |
 | Trivial accessors implemented, not held open | `TYPE_PLAN.md` "Skeleton conventions" | port | Aura states it as `as_str`/field reads expose already-validated values read-only. |
 | Fallible constructors return `Result` with the error enum complete | `TYPE_PLAN.md` "Skeleton conventions" | port | Aura: "Fallible constructors return `Result<_, ContextError>`". Error-enum completeness is the generalization. |
@@ -118,14 +118,18 @@ the section names are the durable reference.
 | Card ids, board gate letters, WIP limits, wave vocabulary | `PROCESS.md`, card files | Board machinery. That is boardkit's surface, not this repo's; the playbook states the board mapping in one paragraph in `README.md`. |
 | Benchmark scores, cost figures, token counts, LOC-measurement tooling | S2 card Log, `PROCESS.md` | Private program data, and irrelevant to the practice. |
 | Aura type names, prompt text, snapshot contents, and template slot names | S2 harness | Private product content. |
-| The informal user-side name for the practice | wiki workstream | User-private vocabulary. |
+| The informal user-side name for the practice | wiki workstream | Dropped at extraction as user-private vocabulary; since attributed in `README.md` (the OllamaHoles plugin). |
 | Aura's specific serde boundary exception | `TYPE_PLAN.md` "Boundary rule" | Product-specific; generalized into the template's "recorded exceptions" row instead. |
 
 ## Standing obligations
 
-- **Never publish.** This repo carries distilled private material. The
-  public slice is the `typed-holes` skill in claude-skills, which must be
+- **Public, bounded.** This repo is public. Aura-derived material may
+  live here (aura is open source), but nothing from any other private
+  source enters. The `typed-holes` skill in claude-skills stays
   self-sufficient without this repo.
+- **Keep the attribution notice.** `README.md` opens with it (the
+  OllamaHoles plugin and Blinn et al. 2024), and `bin/check` fails when
+  it is missing or moved off the top.
 - **Doctrine drift is checked against the skill.** The canonical statement
   of the practice is the `typed-holes` skill, not `PLAYBOOK.md` prose; the
   tripwire below compares the sources to the skill, and `PLAYBOOK.md` is

@@ -1,8 +1,11 @@
 # rust-holes
 
-**Private.** Do not publish this repository. It carries material derived
-from private work; the public slice of this practice ships as the
-`typed-holes` skill in claude-skills.
+**Attribution.** The practice grew out of Matthías Páll Gissurarson's
+[OllamaHoles](https://github.com/Tritlo/OllamaHoles) plugin, which fills
+GHC typed holes with LLM-generated hole-fits and gave the practice its
+informal name, and of Blinn et al., [Statically Contextualizing Large
+Language Models with Typed Holes](https://dl.acm.org/doi/10.1145/3689728)
+(OOPSLA 2024).
 
 A Rust development practice: two layers of machine-tracked holes, filled
 over time.
@@ -51,7 +54,7 @@ Every template opens with a paragraph that begins `Template.`, says how
 to instantiate it, and carries the copy-stamp instruction; a copy
 records `copied from rust-holes@<sha>` so it can be diffed against
 upstream later. `bin/check` verifies those headers, this file's
-read-order table, every relative link, and the private notice above;
+read-order table, every relative link, and the attribution notice above;
 `bin/seed-defects.sh` proves each rule still fires on a seeded defect.
 
 ## How this composes
@@ -64,7 +67,7 @@ references.
   process template's type-discipline section is a stub that names the
   `typed-holes` skill if installed and degrades to "define your language's
   type discipline here" if not.
-- **rust-holes** (this repo, private) holds the templates and worked
+- **rust-holes** (this repo, public) holds the templates and worked
   examples; the practice itself lives in the `typed-holes` skill.
 - **claude-skills** (public) is the glue. The `typed-holes` skill carries
   the generic practice and is self-sufficient for the workflow; this repo
@@ -75,10 +78,11 @@ The contract in both directions:
 - This repo names skills by bare backticked name (`rust-design`,
   `gate-probes`) and must keep working when they are absent. Where a rule
   would otherwise live only in a skill, it is stated inline here.
-- Private material stays here. Nothing in the two public artifacts carries
-  aura-derived exemplars, machine paths, host names, cost figures, or
-  benchmark numbers. Same rule as boardkit's publish gates, applied in the
-  opposite direction.
+- Aura-derived material may appear here: aura is open source, and
+  `EXTRACTION.md` traces every rule to its aura source. Machine paths,
+  host names, cost figures, benchmark numbers, and material from any
+  private source outside the aura project stay out of all three
+  artifacts. Same rule as boardkit's publish gates.
 
 A board is not required. If one is present, the natural mapping is: the
 skeleton is one card, each fill is another, the design panel is the

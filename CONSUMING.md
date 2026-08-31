@@ -7,16 +7,15 @@ and worked examples behind it.
 
 ## Access
 
-The repo is private on GitHub at `Shearerbeard/rust-holes`, default
-branch `master`, granted per collaborator. Once granted:
+The repo is public on GitHub at `Shearerbeard/rust-holes`, default
+branch `master`:
 
 ```
-git clone git@github.com:Shearerbeard/rust-holes.git
+git clone https://github.com/Shearerbeard/rust-holes.git
 ```
 
-It is never published. What may and may not leave this repo is
-`EXTRACTION.md`'s to state; read its Standing obligations before you
-carry anything out of here.
+What may and may not enter this repo is `EXTRACTION.md`'s to state;
+read its Standing obligations before you add material here.
 
 ## Prerequisites
 
@@ -76,6 +75,5 @@ rust-holes@<sha>` in the copy. To see what changed upstream since, run
 
 The steps this page cannot answer:
 
-- The collaborator grant itself.
 - A machine bootstrap recipe for boardkit (its card S39).
 - The kit's clone path (its card S40).

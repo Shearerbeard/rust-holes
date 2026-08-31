@@ -18,10 +18,10 @@ missing from a template, it is in the skill.
 Two things live here because the skill cannot hold them, each with the
 reason.
 
-- **Provenance.** `EXTRACTION.md` traces every rule to its private source
-  with a disposition and carries the re-grep tripwire. The skill cannot
-  cite private sources, so the ledger stays here and drift is now checked
-  against the skill (its Standing obligations say how).
+- **Provenance.** `EXTRACTION.md` traces every rule to its aura source
+  with a disposition and carries the re-grep tripwire. The skill stays
+  repo-neutral and cites no sources, so the ledger stays here and drift
+  is checked against the skill (its Standing obligations say how).
 - **Clippy gate sequence.** Fill units run `-D warnings -A clippy::todo`
   while holes remain and the last fill unit drops the `-A`; the skill
   names the lint, this repo's fill block carries the flag sequence as

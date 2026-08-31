@@ -1,8 +1,9 @@
 # Agent entry
 
-**Private.** Never publish this repository; the public slice is the
-`typed-holes` skill in claude-skills (see `EXTRACTION.md`, Standing
-obligations).
+**Public.** This repository is public. `README.md` opens with the
+attribution notice, which `bin/check` enforces; what may enter the repo
+is bounded by `EXTRACTION.md`'s Standing obligations: nothing from a
+private source outside the aura project.
 
 Orient from `README.md`; its read-order table is the map, and a
 consumer starts at `CONSUMING.md`. The practice itself lives in the

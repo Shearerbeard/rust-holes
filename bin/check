@@ -4,7 +4,7 @@
 Exit 0 when every rule passes. Otherwise print one line per defect as
 `FAIL <rule>: <file>: <detail>` and exit 1. The rules are the ones
 README.md ("Using it") promises: links, template-header,
-template-stamp, readme-read-order, never-publish.
+template-stamp, readme-read-order, attribution.
 """
 
 import re
@@ -18,7 +18,7 @@ STAMP = (
     "When you copy this file, record `copied from rust-holes@<sha>` in "
     "the copy, where `<sha>` is this repo's HEAD at copy time."
 )
-PRIVATE_OPENING = "**Private.**"
+ATTRIBUTION_OPENING = "**Attribution.**"
 
 
 def md_files():
@@ -129,9 +129,9 @@ def check_readme(failures):
                 failures.append(
                     f"FAIL readme-read-order: README.md: {rel(f)} is not a row of the read-order table"
                 )
-    if not opening_paragraph(readme).startswith(PRIVATE_OPENING):
+    if not opening_paragraph(readme).startswith(ATTRIBUTION_OPENING):
         failures.append(
-            "FAIL never-publish: README.md: the paragraph after the title must begin with '**Private.**'"
+            "FAIL attribution: README.md: the paragraph after the title must begin with '**Attribution.**'"
         )
 
 

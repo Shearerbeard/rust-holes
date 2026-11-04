@@ -1,0 +1,14 @@
+rust-holes
+
+© 2026 Mike Shearer. MIT, see LICENSE.
+
+The practice grew out of Matthías Páll Gissurarson's OllamaHoles and Blinn
+et al., "Statically Contextualizing Large Language Models with Typed Holes"
+(OOPSLA 2024). The README credits both.
+
+Templates here already ask a copier to record `copied from rust-holes@<sha>`.
+The same courtesy applies to anyone adapting the prose: keep a Lineage block.
+
+    Source: Shearerbeard/rust-holes (<path>), <commit>
+    License: MIT
+    Changes: <what you changed>

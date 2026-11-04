@@ -88,3 +88,8 @@ A board is not required. If one is present, the natural mapping is: the
 skeleton is one card, each fill is another, the design panel is the
 skeleton card's agent-review gate, and the coverage manifest is a
 committed acceptance artifact.
+
+## License
+
+MIT, © 2026 Mike Shearer. See [LICENSE](LICENSE). [NOTICE](NOTICE) carries
+the attribution request and the credits this practice grew from.

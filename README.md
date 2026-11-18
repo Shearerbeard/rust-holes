@@ -69,7 +69,7 @@ references.
   type discipline here" if not.
 - **rust-holes** (this repo, public) holds the templates and worked
   examples; the practice itself lives in the `typed-holes` skill.
-- **claude-skills** (public) is the glue. The `typed-holes` skill carries
+- **agent-skills** (public) is the glue. The `typed-holes` skill carries
   the generic practice and is self-sufficient for the workflow; this repo
   adds the templates and worked examples.
 

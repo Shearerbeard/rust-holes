@@ -12,6 +12,16 @@ pre-failing from the spec. When you copy this file, record `copied from
 rust-holes@<sha>` in the copy, where `<sha>` is this repo's HEAD at copy
 time.
 
+## Evidence boundary
+
+Give the test author the approved spec revision before implementation.
+Expected results come from that spec rather than the implementation's
+response. Use whole-frame goldens for emitted artifacts and behavioral
+tests for semantics beyond them, including non-rendering work. Record
+critical counterexamples and conversion-collision fixtures in MANIFEST.md.
+The positive/negative byte-identity controls below validate snapshot
+comparison, not the behavioral assertions.
+
 ## Module shape
 
 A single test-only module beside the code it covers, declared at the

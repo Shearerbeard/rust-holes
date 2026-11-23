@@ -6,9 +6,9 @@ the brief **quotes** the rules instead of naming skills. When you copy
 this file, record `copied from rust-holes@<sha>` in the copy, where
 `<sha>` is this repo's HEAD at copy time.
 
-Paste the block below into the brief verbatim, fill the angle brackets,
-and delete everything above the rule line. Nothing in the block depends on
-a skill being installed.
+The coordinator copies the applicable block and resolves every assignment
+placeholder against the approved spec and card. Read the assembled brief
+before dispatch; omit this preamble. No installed skill is required.
 
 Two briefs exist because the two layers are separate units of work: the
 skeleton brief and the fill brief. Send the one that matches the unit.
@@ -24,6 +24,11 @@ and is never the model that authored the unit.
 
 > **Type discipline (binding for this task).**
 > **Executor class:** smart writer-reviewer; this is the design step.
+>
+> Inputs: <approved spec path/revision and approval state>, <input commit>,
+> <allowed files>, <exact checks>. Missing approval or requirements return
+> to the spec owner. This block supplies rules to an executor without skill
+> loading; a skill-loading executor must also have effective access.
 >
 > 1. Lay the full type surface: real signatures, real derives, real
 >    `From`/`Into` impls, real leaf types. Do not stand in a placeholder
@@ -79,6 +84,10 @@ and is never the model that authored the unit.
 > **Fill discipline (binding for this task).**
 > **Executor class:** small explorer.
 >
+> Inputs: <spec revision>, <input commit>, <named tests and required bodies>,
+> <remaining holes and expected intermediate red set>, <exact checks>.
+> The owner partitions coupled bodies so this unit can pass its named tests.
+>
 > 1. Fill only the bodies named in this brief: <list>. Do not change any
 >    signature, derive, or type. A signature change means the skeleton was
 >    wrong; stop and report it rather than editing it.
@@ -86,16 +95,21 @@ and is never the model that authored the unit.
 >    marker by hand. Do not wait for the compiler to ask: a body that
 >    still ignores one of its arguments keeps the expectation fulfilled
 >    and the marker silent.
-> 3. The golden tests covering these bodies are already committed and
->    already failing. Your unit is done when they are green and no
->    snapshot was accepted by hand: run the suite with snapshot
+> 3. Spec-derived tests covering these bodies are committed and already
+>    failing. Behavioral tests apply even without a rendered artifact.
+>    Your unit is done when its named tests pass; run snapshot tests with
 >    auto-acceptance disabled.
 > 4. Do not add, edit, or re-accept a snapshot. A golden that seems wrong
 >    is a finding to report, not a file to update.
 > 5. Green means: `cargo clippy --workspace --all-targets -- -D warnings
->    -A clippy::todo` (drop the `-A` on the last fill unit),
+>    -A clippy::todo` (drop the `-A` only when no authorized holes remain
+>    under this command's scope),
 >    `cargo fmt --check` (the `+nightly` form only where the repo pins
 >    nightly rustfmt options), and the named tests passing.
+> 6. Do not change the supplied tests or expected results. The test owner
+>    derives them from the spec and supplies discriminating evidence for
+>    critical limits, exclusions and conversions. Report a suspected oracle
+>    defect instead of making the implementation and test agree.
 >
 > **API conventions.** Same four rules as the skeleton brief (`AsRef` over
 > inherent `as_str`, no function-local consts, no `as_str().to_owned()`

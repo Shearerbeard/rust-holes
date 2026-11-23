@@ -6,9 +6,9 @@ the brief **quotes** the rules instead of naming skills. When you copy
 this file, record `copied from rust-holes@<sha>` in the copy, where
 `<sha>` is this repo's HEAD at copy time.
 
-Paste the block below into the brief verbatim, fill the angle brackets,
-and delete everything above the rule line. Nothing in the block depends on
-a skill being installed.
+The coordinator copies the applicable block and resolves every assignment
+placeholder against the approved spec and card. Read the assembled brief
+before dispatch; omit this preamble. No installed skill is required.
 
 Two briefs exist because the two layers are separate units of work: the
 skeleton brief and the fill brief. Send the one that matches the unit.

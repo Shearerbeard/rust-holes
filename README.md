@@ -19,8 +19,9 @@ over time.
   pre-failing from the spec. The test runner tracks the rendering and
   semantics holes the compiler cannot see.
 
-Between the two, a two-reviewer design panel on the skeleton commit, with
-numbered per-finding dispositions.
+Between the two, a design-panel review on the skeleton commit: a single
+`rust-reviewer` pass covering both invalid-states and logic/seams
+questions, with numbered per-finding dispositions.
 
 ## Read this in order
 
@@ -31,7 +32,7 @@ numbered per-finding dispositions.
 | `templates/DESIGN.md` | The per-module type inventory, seam table, panel ledger, residual risks. |
 | `templates/skeleton-conventions.md` | The per-module statement of how the skeleton rules were applied. |
 | `templates/dispatch-brief.md` | Quote blocks for executors that do not load skills. |
-| `templates/design-panel-prompts.md` | The two panel prompts, adversarial and second-model. |
+| `templates/design-panel-prompts.md` | A combined skeleton-review prompt and optional second reviewer. |
 | `templates/MANIFEST.md` | The golden coverage manifest: identity-claim scope, covered rows, exclusion rows with reasons. |
 | `templates/golden-frame-harness.md` | The Layer 2 harness shape and starting skeletons. |
 | `examples/approval-client-adt.md` | Layer 1 worked example: a small client's whole type surface. |

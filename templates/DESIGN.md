@@ -48,18 +48,18 @@ needs its own justification row.
 Module-level `#![allow(dead_code)]`: <present or removed>, removal plan
 <which slice removes it when>.
 
-## Design panel findings
+## Skeleton review findings
 
 Numbered, one row per finding, each with its own disposition. Aggregate
 counts are not a disposition.
 
 | # | Reviewer | Finding | Disposition |
 |---|---|---|---|
-| 1 | adversarial | <invalid state still representable> | ACCEPTED: <the repair, and where it landed> |
-| 2 | second-model | <logic or ordering error> | REJECTED: <why the finding does not hold> |
+| 1 | skeleton reviewer | <invalid state still representable> | ACCEPTED: <the repair, and where it landed> |
+| 2 | skeleton reviewer | <logic or ordering error> | REJECTED: <why the finding does not hold> |
 
-Author model: <model>. Panel seats: <adversarial reviewer>, <logic
-reviewer>. Both differ from the author.
+Author model: <model>. Reviewer model: <independent reviewer>.
+Record a second reviewer only when the operator selects that optional seat.
 
 ## Residual risks
 

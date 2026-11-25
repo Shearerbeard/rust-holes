@@ -46,6 +46,27 @@ rows are outside the identity claim.
 | <surface> | <why no coverage is needed, or why it cannot be snapshotted> | `<test path::name>` |
 | <re-stated surface> | re-stated in the harness, closing it is required work, not a nice-to-have | |
 
+## Behavioral evidence outside the identity claim
+
+Snapshot identity does not establish downstream semantics. Name the test
+owner and spec revision for behavioral expectations. For each critical
+limit, exclusion or conversion, record a plausible wrong implementation
+and the evidence that the owning test rejects it. Failure on a hole panic
+alone is reachability evidence.
+
+| Requirement / spec revision | Owning behavioral test | Required bodies | Wrong implementation rejected | Evidence |
+|---|---|---|---|---|
+| <critical rule> | `<test path::name>` | <all bodies needed for green> | <counterexample> | <transcript, or pending owner/check> |
+
+Keep the map here rather than repeating the specification. A test needing a
+later body stays in the intermediate red set. Pending control execution does
+not count as rejection evidence.
+
+For representation collisions, name the backend-local fixture, exact
+boundary and first value beyond it, empty input and colliding stored value.
+Explain why ordinary ingress cannot construct the fixture. These rows
+remain outside the snapshot identity claim.
+
 ## Determinism constraints
 
 Constraints the corpus data obeys so the snapshots stay stable. Each is a

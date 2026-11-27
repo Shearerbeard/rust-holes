@@ -8,6 +8,9 @@ this file, record `copied from rust-holes@<sha>` in the copy, where
 Baseline: <commit or tag the skeleton was cut from>. Scope: <what this
 record covers and what it does not>. Coverage ledger: <path to the golden
 coverage manifest, if the module has one>.
+Requirements: <approved spec, card, or ADR at the input revision>. Commit
+this module record with the skeleton. Link a separate ADR when the task
+calls for one.
 
 ## Type inventory
 
@@ -59,7 +62,6 @@ counts are not a disposition.
 | 2 | skeleton reviewer | <logic or ordering error> | REJECTED: <why the finding does not hold> |
 
 Author model: <model>. Reviewer model: <independent reviewer>.
-Record a second reviewer only when the operator selects that optional seat.
 
 ## Residual risks
 

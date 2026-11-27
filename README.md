@@ -32,7 +32,7 @@ questions, with numbered per-finding dispositions.
 | `templates/DESIGN.md` | The per-module type inventory, seam table, panel ledger, residual risks. |
 | `templates/skeleton-conventions.md` | The per-module statement of how the skeleton rules were applied. |
 | `templates/dispatch-brief.md` | Quote blocks for executors that do not load skills. |
-| `templates/design-panel-prompts.md` | A combined skeleton-review prompt and optional second reviewer. |
+| `templates/design-panel-prompts.md` | The combined skeleton-review prompt. |
 | `templates/MANIFEST.md` | The golden coverage manifest: identity-claim scope, covered rows, exclusion rows with reasons. |
 | `templates/golden-frame-harness.md` | The Layer 2 harness shape and starting skeletons. |
 | `examples/approval-client-adt.md` | Layer 1 worked example: a small client's whole type surface. |
@@ -86,8 +86,8 @@ The contract in both directions:
   artifacts. Same rule as boardkit's publish gates.
 
 A board is not required. If one is present, the natural mapping is: the
-skeleton is one card, each fill is another, the design panel is the
-skeleton card's agent-review gate, and the coverage manifest is a
+skeleton is one card, each fill is another, the single skeleton review is
+the skeleton card's agent-review gate, and the coverage manifest is a
 committed acceptance artifact.
 
 ## License

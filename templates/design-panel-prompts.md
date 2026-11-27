@@ -1,21 +1,17 @@
 # Design panel prompts
 
-Template. One `rust-reviewer` pass reading the skeleton commit in a
-fresh context with no memory of the design conversation. The reviewer
-covers both invalid-states and logic/seams questions in one session.
-The reviewer may not share a model family with the skeleton's author.
-Findings come back numbered; each disposition is recorded individually
-in the module's `DESIGN.md`. When you copy this file, record `copied from
+Template. One fresh reviewer reads the compiled skeleton. When you copy this file, record `copied from
 rust-holes@<sha>` in the copy, where `<sha>` is this repo's HEAD at copy
 time.
 
-Fill the angle brackets. Point the reviewer at file paths, not pasted
-contents, when the reviewer can read the repo itself.
+Fill the fields from the accepted skeleton commit. Check that the reviewer
+can read each path from its worktree; stage external inputs at the named
+packet paths before dispatch.
 
-## Default: single combined reviewer
+## Skeleton reviewer
 
-> You are reviewing a Rust type skeleton at commit `<sha>`. Every body is
-> `todo!()`; that is intentional and is not a finding. Files:
+> You are reviewing a Rust type skeleton at commit `<sha>`. Named behavior
+> holes are intentional; trivial accessors are implemented. Files:
 > `<paths>`. The spec this skeleton implements is `<path>`. The design
 > record naming each type's business rule and the invalid state it forbids
 > is `<path to DESIGN.md>`.
@@ -77,29 +73,10 @@ contents, when the reviewer can read the repo itself.
 > one-line verdict. Zero findings is a valid result; state it explicitly
 > as PASS rather than returning nothing.
 
-## Optional: second reviewer (explicit user request only)
-
-A second, separately dispatched reviewer covering the same question sets
-in a parallel fresh session is available on explicit user request. It is
-not dispatched by default. Use this prompt for that seat.
-
-> You are reviewing a Rust type skeleton at commit `<sha>`. Every body is
-> `todo!()`; that is intentional and is not a finding. Files:
-> `<paths>`. The spec this skeleton implements is `<path>`. The design
-> record is `<path to DESIGN.md>`.
->
-> Read the spec first, then the types. Apply all invalid-states and
-> logic/seams questions from the design panel (see the template). Return
-> numbered findings, each marked BLOCKING or MINOR, each with the repair
-> you would make. End with a one-line verdict. State PASS explicitly if
-> you find nothing.
-
 ## Recording the result
 
 - Every finding gets a row in the design record with its own disposition:
   the repair for an accepted finding, the reason for a rejected one.
-- Record the author model and the reviewer model. The invariant that a
-  model never grades its own output is auditable only if it is written
-  down.
+- Record the author and reviewer models with the findings.
 - Repairs land before the first body. A finding deferred past the first
   fill is a finding the practice did not catch.

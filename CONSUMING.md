@@ -24,8 +24,8 @@ read its Standing obligations before you add material here.
   nightly rustfmt options.
 - The `insta` crate, for golden frames.
 - Python 3, for `bin/check`.
-- For the design panel, access to two model families, so a reviewer
-  never shares a family with the author.
+- A fresh reviewer distinct from the author. Prefer a different family;
+  agree on the reviewer with the operator when only one family is available.
 
 ## The standalone path
 

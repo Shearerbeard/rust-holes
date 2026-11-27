@@ -6,19 +6,10 @@ the brief **quotes** the rules instead of naming skills. When you copy
 this file, record `copied from rust-holes@<sha>` in the copy, where
 `<sha>` is this repo's HEAD at copy time.
 
-The coordinator copies the applicable block and resolves every assignment
-placeholder against the approved spec and card. Read the assembled brief
-before dispatch; omit this preamble. No installed skill is required.
-
-The skeleton, test-author and fill briefs serve separate assignments.
-Send the one that matches the unit.
-Each block names the model class it is written for, in the three-class
-vocabulary a board's model-classes document uses (frontier orchestrator,
-smart writer-reviewer, small explorer). The reviewer of any unit is
-the smart writer-reviewer class and is never the model that authored the
-unit. A fallback agent must be explicitly selected by the operator, either
-in the approved routing or for this task. Frontier is not an automatic
-fallback.
+Select one block and fill its assignment fields from the approved spec.
+On a boardkit board, `delegating-work` supplies the card brief through
+`boardkit dispatch-brief <card-id>`. Send that output with the selected
+Rust block. Standalone executors receive the filled block directly.
 
 ---
 
@@ -56,15 +47,14 @@ fallback.
 >    Do not mark a zero-parameter function: with no unused variable the
 >    expectation is unfulfilled on arrival and fails the `-D warnings`
 >    gate. Module entry carries `#![allow(dead_code)]`.
-> 8. Deliver a `DESIGN.md` next to the module mapping every public type to
->    one business rule and naming the invalid state it forbids, plus a
+> 8. Include `DESIGN.md` in the skeleton commit, next to the module. Map every public type to
+>    one business rule and name the invalid state it forbids. Include a
 >    visibility and seam table and named residual risks.
 > 9. The skeleton is its own commit and must be green under
 >    `cargo check --workspace --all-targets`,
 >    `cargo clippy --workspace --all-targets -- -D warnings`, and
 >    `cargo fmt --check` (the `+nightly` form only where the repo pins
->    nightly rustfmt options). Do not implement any body in
->    this unit.
+>    nightly rustfmt options). Leave the named behavior holes for fill units.
 >
 > **API conventions (drift accumulates across executors; these are
 > checked at review).**
@@ -76,8 +66,8 @@ fallback.
 > - Never paper over source-level optionality with a render-level
 >   placeholder. If the source value is optional, the type says so.
 >
-> **Out of scope.** Do not implement bodies, do not widen production
-> visibility, do not add dependencies beyond <the named ones>.
+> **Out of scope.** Do not fill behavior holes, widen production
+> visibility, or add dependencies beyond <the named ones>.
 
 ---
 

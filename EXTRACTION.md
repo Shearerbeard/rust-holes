@@ -45,13 +45,13 @@ the section names are the durable reference.
 
 | Rule in `PLAYBOOK.md` | Source | Disposition | Notes |
 |---|---|---|---|
-| Two-reviewer panel between skeleton and first body, context-isolated | `PROCESS.md` "Type discipline" | port | |
-| Seat 1 adversarial: which invalid states remain representable, which states are production-unreachable | `PROCESS.md` "Type discipline" | port | Both questions are aura's wording in substance. |
-| Seat 2 second-model logic review | `PROCESS.md` "Type discipline" + `REVIEW-TOOLING.md` "The standing rule" | port | |
+| One context-isolated skeleton review covering invalid states and logic/seams before first body | `PROCESS.md` "Type discipline" | port, consolidated | The historical source describes two reviewer seats; this repo's template combines the question sets in one `rust-reviewer` pass. |
+| Invalid states remaining representable and states production cannot reach | `PROCESS.md` "Type discipline" | port | |
+| Spec/type mismatches, ordering, seams, coverage claims, synthetic states, and error modeling | `PROCESS.md` "Type discipline" + `REVIEW-TOOLING.md` "The standing rule" | port | Combined with invalid-state questions into the single review prompt. |
 | Findings numbered, each with its own disposition; aggregate counts are a failure | `PROCESS.md` "Type discipline" (S29 retro change 2, defect D1) | port | The defect that produced the rule is described without its card ids. |
 | Reviewer differs from author | `REVIEW-TOOLING.md` "The standing rule" | port | The specific model pins and hosting providers are dropped. |
 | Panel is required, not optional; it caught a production-unreachable fixture state and ten logic issues | `PROCESS.md` "Type discipline" + S2 card Log (2026-07-12 skeleton entry) | port | Counts kept here, card and model ids dropped. The public skill states the same claim without the counts. |
-| Panel prompts (both seats) | none | author | Net-new. Assembled from the aura rule set; the serde question is the wiki P0 corrective, the coverage-claim and synthetic-state questions are generalized from the S2 panel's actual findings. |
+| Combined skeleton-review prompt | none | author | Net-new. Consolidates the source question sets; the serde question is the wiki P0 corrective, the coverage-claim and synthetic-state questions are generalized from the S2 review's findings. |
 
 ## Layer 2: red-green golden frames
 

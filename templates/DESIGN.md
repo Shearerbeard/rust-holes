@@ -8,6 +8,9 @@ this file, record `copied from rust-holes@<sha>` in the copy, where
 Baseline: <commit or tag the skeleton was cut from>. Scope: <what this
 record covers and what it does not>. Coverage ledger: <path to the golden
 coverage manifest, if the module has one>.
+Requirements: <approved spec, card, or ADR at the input revision>. Commit
+this module record with the skeleton. Link a separate ADR when the task
+calls for one.
 
 ## Type inventory
 
@@ -48,18 +51,17 @@ needs its own justification row.
 Module-level `#![allow(dead_code)]`: <present or removed>, removal plan
 <which slice removes it when>.
 
-## Design panel findings
+## Skeleton review findings
 
 Numbered, one row per finding, each with its own disposition. Aggregate
 counts are not a disposition.
 
 | # | Reviewer | Finding | Disposition |
 |---|---|---|---|
-| 1 | adversarial | <invalid state still representable> | ACCEPTED: <the repair, and where it landed> |
-| 2 | second-model | <logic or ordering error> | REJECTED: <why the finding does not hold> |
+| 1 | skeleton reviewer | <invalid state still representable> | ACCEPTED: <the repair, and where it landed> |
+| 2 | skeleton reviewer | <logic or ordering error> | REJECTED: <why the finding does not hold> |
 
-Author model: <model>. Panel seats: <adversarial reviewer>, <logic
-reviewer>. Both differ from the author.
+Author model: <model>. Reviewer model: <independent reviewer>.
 
 ## Residual risks
 

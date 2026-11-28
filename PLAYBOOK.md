@@ -7,10 +7,11 @@ missing from a template, it is in the skill.
 
 | Skill section | Supported here by |
 |---|---|
+| Test-author assignment | `templates/dispatch-brief.md` test-author block, `templates/MANIFEST.md` |
 | Layer 1: the typed-holes skeleton | `templates/dispatch-brief.md` skeleton block, `templates/DESIGN.md`, `templates/skeleton-conventions.md`, `examples/approval-client-adt.md` |
-| The design panel | `templates/design-panel-prompts.md`; the panel ledger rows of `templates/DESIGN.md` |
+| Skeleton review | `templates/design-panel-prompts.md`; the review ledger rows of `templates/DESIGN.md` |
 | Layer 2: golden frames | `templates/golden-frame-harness.md`, `templates/MANIFEST.md`, `examples/golden-frame-harness.md` |
-| Fill order | `templates/dispatch-brief.md` fill block |
+| Execution flow and dispatch units | `templates/dispatch-brief.md` skeleton, test-author, and fill blocks |
 | Known limits | the skill alone; `EXTRACTION.md` records the corrective duty when a limit fires |
 
 ## Repo-specific notes

@@ -6,10 +6,12 @@ the brief **quotes** the rules instead of naming skills. When you copy
 this file, record `copied from rust-holes@<sha>` in the copy, where
 `<sha>` is this repo's HEAD at copy time.
 
-Select one block and fill its assignment fields from the approved spec.
-On a boardkit board, `delegating-work` supplies the card brief through
-`boardkit dispatch-brief <card-id>`. Send that output with the selected
-Rust block. Standalone executors receive the filled block directly.
+Select one block for a worker without skill access. Fill its assignment
+fields from the approved spec. For a skill-capable worker, send the
+assignment fields and name the skill to load instead of copying the block.
+On a boardkit board, `boardkit dispatch-brief <card-id>` supplies the card
+and its contract. Include that brief or stage it at a readable path in the
+worker's worktree and name the path in the kickoff.
 
 ---
 
